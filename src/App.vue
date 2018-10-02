@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <listtest />
+    <!-- <formWiz/> -->
+    <formWizScratch/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import listtest from './components/listtest.vue' 
+// import formWiz from './components/formWiz.vue'
+import formWizScratch from './components/formWizScratch.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    // HelloWorld,
+    listtest,
+    // formWiz,
+    formWizScratch,
+    // FormWizard,
+    // TabContent
   }
 }
 </script>
