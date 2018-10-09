@@ -1,8 +1,8 @@
 <template>
     <div id = 'formWizScratch'>
         <form-wizard>
-            <tab-content title='Household' icon = 'ti-home'> 
-                Household 
+            <tab-content title='Household' icon = 'ti-user'> 
+                <householdInfo />
             </tab-content>
             <tab-content title='Income'>
                 Income
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+
+import householdInfo from './householdInfo.vue'
 
 export default {
     name: 'formWizScratch',
@@ -89,7 +91,10 @@ export default {
             type: Number,
             default: 0
         }
-        }
+    },
+    components: {
+        householdInfo,
+    }
 }
 </script>
 

@@ -1,173 +1,75 @@
 <template>
-    <div>
-    <form-wizard @on-complete="onComplete"
-                    color="gray"
-                    error-color="#a94442"
-                    >
-        <tab-content title="Personal details"
-                        icon="ti-user" :before-change="validateFirstTab">
-            <vue-form-generator :model="model" 
-                                :schema="firstTabSchema"
-                                :options="formOptions"
-                                ref="firstTabForm"
-                                >
-                                    
-            </vue-form-generator>
-        </tab-content>
-        <tab-content title="Additional Info"
-                        icon="ti-settings" :before-change="validateSecondTab">
-            <vue-form-generator :model="model" 
-                                :schema="secondTabSchema"
-                                :options="formOptions"
-                                ref="secondTabForm"
-                                >                                
-            </vue-form-generator>
-            
-        </tab-content>
-        <tab-content title="Last step"
-                        icon="ti-check">
-            <h4>Your json is ready!</h4>
-            <div class="panel-body">
-            <pre v-if="model" v-html="prettyJSON(model)"></pre>
-            </div>
-        </tab-content>
-    </form-wizard>
- </div>
+  <form-wizard @on-complete="onComplete" shape="circle" color="#20a0ff" error-color="#ff4949">
+    <tab-content title="Personal details" icon="ti-user" :before-change="validateFirstStep">
+      <el-form :inline="true" :model="formInline" class="demo-form-inline" :rules="rules" ref="ruleForm">
+        <el-form-item label="Approved by" prop="user">
+          <el-input v-model="formInline.user" placeholder="Approved by"></el-input>
+        </el-form-item>
+        <el-form-item label="Activity zone" prop="region">
+          <el-select v-model="formInline.region" placeholder="Activity zone">
+            <el-option label="Zone one" value="shanghai"></el-option>
+            <el-option label="Zone two" value="beijing"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
 
+    </tab-content>
+    <tab-content title="Additional Info" icon="ti-settings">
+      Second tab
+    </tab-content>
+    <tab-content title="Last step" icon="ti-check">
+      Yuhuuu! This seems pretty damn simple
+    </tab-content>
+
+    <el-button type="primary" slot="prev">Back</el-button>
+    <el-button type="primary" slot="next">Next</el-button>
+    <el-button type="primary" slot="finish">Finish</el-button>
+  </form-wizard>
 </template>
 
+
 <script>
-export default {
-    name: 'formWiz',
-    data:{
-      model:{
-          firstName:'',
-          lastName:'',
-          email:'',
-          streetName:'',
-          streetNumber:'',
-          city:'',
-          country:'',
-      },
-      formOptions: {
-          validationErrorClass: "has-error",
-          validationSuccessClass: "has-success",
-          validateAfterChanged: true
-      },
-      firstTabSchema:{
-        fields:[{
-            type: "input",
-            inputType: "text",
-            label: "First name",
-            model: "firstName",
-            required:true,
-            validator:VueFormGenerator.validators.string,
-            styleClasses:'col-xs-6'
-        },
-        {
-          type: "input",
-          inputType: "text",
-          label: "Last name",
-          model: "lastName",
-          required:true,
-          validator:VueFormGenerator.validators.string,
-          styleClasses:'col-xs-6'
-      },
-        {
-          type: "input",
-          inputType: "text",
-          label: "Email",
-          model: "email",
-          required:true,
-          validator:VueFormGenerator.validators.email,
-          styleClasses:'col-xs-12'
-      }
-      ]
-    },
-    secondTabSchema:{
-      fields:[
-      {
-          type: "input",
-          inputType: "text",
-          label: "Street name",
-          model: "streetName",
-          required:true,
-          validator:VueFormGenerator.validators.string,
-          styleClasses:'col-xs-9'
-      },
-        {
-          type: "input",
-          inputType: "text",
-          label: "Street number",
-          model: "streetNumber",
-          required:true,
-          validator:VueFormGenerator.validators.string,
-          styleClasses:'col-xs-3'
-        },
-        {
-          type: "input",
-          inputType: "text",
-          label: "City",
-          model: "city",
-          required:true,
-          validator:VueFormGenerator.validators.string,
-          styleClasses:'col-xs-6'
-        },
-        {
-          type: "select",
-          label: "Country",
-          model: "country",
-          required:true,
-          validator:VueFormGenerator.validators.string,
-          values:['United Kingdom','Romania','Germany'],
-          styleClasses:'col-xs-6'
-        },
-      ]
-    }
-  },
- methods: {
-  onComplete: function(){
-      alert('Yay. Done!');
-   },
-    validateFirstTab: function(){
-     return this.$refs.firstTabForm.validate();
-   },
-   validateSecondTab: function(){
-     return this.$refs.secondTabForm.validate();
-   },
-   
-   prettyJSON: function(json) {
-            if (json) {
-                json = JSON.stringify(json, undefined, 4);
-                json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
-                return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
-                    var cls = 'number';
-                    if (/^"/.test(match)) {
-                        if (/:$/.test(match)) {
-                            cls = 'key';
-                        } else {
-                            cls = 'string';
-                        }
-                    } else if (/true|false/.test(match)) {
-                        cls = 'boolean';
-                    } else if (/null/.test(match)) {
-                        cls = 'null';
-                    }
-                    return '<span class="' + cls + '">' + match + '</span>';
-                });
-            }
+  export default {
+     data() {
+       return {
+         formInline: {
+           user: '',
+           region: ''
+         },
+         rules: {
+           user: [{
+             required: true,
+             message: 'Please input Activity name',
+             trigger: 'blur'
+           }, {
+             min: 3,
+             max: 5,
+             message: 'Length should be 3 to 5',
+             trigger: 'blur'
+           }],
+           region: [{
+             required: true,
+             message: 'Please select Activity zone',
+             trigger: 'change'
+           }],
+         }
         }
+       },
+       methods: {
+         onComplete: function() {
+           alert('Yay. Done!');
+         },
+         validateFirstStep() {
+           return new Promise((resolve, reject) => {
+             this.$refs.ruleForm.validate((valid) => {
+               resolve(valid);
+             });
+           })
+
+         }
+       }
   }
-}
 </script>
 
 <style>
-    pre {
-        overflow: auto;
-    }
-        pre .string { color: #885800; }
-        pre .number { color: blue; }
-        pre .boolean { color: magenta; }
-        pre .null { color: red; }
-        pre .key { color: green; }  
 </style>

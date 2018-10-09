@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <listtest />
+    <!-- <listtest /> -->
     <!-- <formWiz/> -->
     <formWizScratch/>
   </div>
@@ -9,7 +9,7 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import listtest from './components/listtest.vue' 
+// import listtest from './components/listtest.vue' 
 // import formWiz from './components/formWiz.vue'
 import formWizScratch from './components/formWizScratch.vue'
 
@@ -17,7 +17,7 @@ export default {
   name: 'app',
   components: {
     // HelloWorld,
-    listtest,
+    // listtest,
     // formWiz,
     formWizScratch,
     // FormWizard,
