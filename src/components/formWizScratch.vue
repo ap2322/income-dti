@@ -1,7 +1,7 @@
 <template>
     <div id = 'formWizScratch'>
         <form-wizard>
-            <tab-content title='Household' icon = 'ti-user'> 
+            <tab-content title='Household' icon='ti-user'> 
                 <householdInfo />
             </tab-content>
             <tab-content title='Income'>

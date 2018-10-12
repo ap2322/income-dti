@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "ti-icons": "^0.1.2",
     "vue": "^2.5.17",
     "vue-form-generator": "^2.3.0",
     "vue-form-wizard": "^0.8.4"
