@@ -1,11 +1,11 @@
 <template>
     <div id = 'formWizScratch'>
         <form-wizard>
-            <tab-content title='Household' icon='ti-user'> 
+            <tab-content title='Household' icon="ti ti-user">
                 <householdInfo />
             </tab-content>
-            <tab-content title='Income'>
-                Income
+            <tab-content title='Income' icon="ti ti-money">
+                <income/>
             </tab-content>
             <tab-content title='Debt'>
                 Debt
@@ -20,6 +20,7 @@
 <script>
 
 import householdInfo from './householdInfo.vue'
+import income from './income.vue'
 
 export default {
     name: 'formWizScratch',
@@ -94,6 +95,7 @@ export default {
     },
     components: {
         householdInfo,
+        income,
     }
 }
 </script>
