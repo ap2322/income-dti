@@ -1,6 +1,8 @@
 <template>
     <div id = 'formWizScratch'>
-        <form-wizard>
+        <form-wizard color="#ff671f"
+            title = 'Household Income and Debt Calculator'
+            subtitle = 'Calculate your total household income and debt-to-income ratio'>
             <tab-content title='Household' icon="ti ti-user">
                 <householdInfo />
             </tab-content>
@@ -27,11 +29,11 @@ export default {
     props: {
         title: {
             type: String,
-            default: 'Awesome Wizard'
+            default: 'Household Income and Debt Calculator'
         },
         subtitle: {
             type: String,
-            default: 'Split a complicated flow in multiple steps'
+            default: 'Calculate your total household income and debt-to-income ratio'
         },
         nextButtonText: {
             type: String,
@@ -62,7 +64,7 @@ export default {
          */
         color: {
             type: String,
-            default: '#e74c3c' //circle, border and text color
+            default: '#ff671f' //circle, border and text color
         },
         /***
          *  Is set to current step and text when beforeChange function fails 
