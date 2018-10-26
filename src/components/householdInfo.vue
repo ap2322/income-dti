@@ -4,8 +4,8 @@
         <p>Will you be applying for a Habitat home with a spouse/partner?</p>
 
         <div id="example-3" select v-bind="coapplicant">
-            <button v-on:click="coapplicant = true">Yes</button>
-            <button v-on:click="coapplicant = false">No</button>
+            <button v-on:click="setCoapplicant(true)">Yes</button>
+            <button v-on:click="setCoapplicant(false)">No</button>
         </div>
         <p> Applying with a coapplicant? {{ coapplicant }} </p>
         <br>
@@ -27,19 +27,23 @@
 <script>
 export default {
     name: "household",
+    props: {
+        coapplicant: Boolean,
+    },
     data: function(){
         return{
-            coapplicant: false,
             hhSize:'',
             selected: 1,
         }
     },
-
     methods: {
-        admessage(id){
-            console.log(this.hhSize)
-        }
-    }
+        setCoapplicant(yn) {
+            this.$emit('coapplicantSpecified', yn);
+            if (yn) {
+                this.hhSize = 2;
+            }
+        },
+    },
 }
 </script>
 

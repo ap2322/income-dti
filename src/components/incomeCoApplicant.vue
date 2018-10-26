@@ -1,8 +1,7 @@
 <template>
     <div>
-        <h2>Income</h2>
-        <p>What is your hourly income from your primary job? 
-        <!-- <label for="incomePrimary">Applicant Primary Income</label> -->
+        <h2>Co-Applicant Income</h2>
+        <p>What is the hourly income from their primary job in $/hour? 
         <input 
             type="number" name="incomePrimary"
             placeholder="$0.00/hr"
@@ -25,14 +24,14 @@
             value="hoursPerWeek"
         />
 
-        <p>Do you have another job?</p>
+        <p>Do they have another job?</p>
         <div id="anotherJob" select v-bind="anotherJob">
             <button v-on:click="anotherJob = true">Yes</button>
             <button v-on:click="anotherJob = false">No</button>
         </div>
 
         <div v-if=anotherJob>
-        <p> What is your hourly income from this job? 
+        <p> What is their hourly income from this job? 
             <input 
                 type="number" name="incomeSecondary"
                 placeholder="$0.00/hr"
@@ -42,7 +41,7 @@
                 value="incomeSecondary"
             />
         </p>
-        <p>On average, how many hours per week do you work?</p>
+        <p>On average, how many hours per week do they work?</p>
             <label for="hoursSecondary">Hours per week </label>
             <input 
                 type="number" name="hoursSecondary"
@@ -54,11 +53,9 @@
             />
         </div>
 
-        <p>Your primary income is {{ incomePrimary }}/hr and {{ annualIncome }} annually.</p>
-        <p>Your secondary income is {{ incomeSecondary }}/hr and {{ annualIncomeSecondary }} annually.</p>
-        <p>Together, your earned income is {{ totalIncome }}</p>
-
-        <button v-show='coapplicant' v-on:click='showCoapplicantForm(true)'> Ready to add your spouse/partner/coapplicant's income?</button>
+        <p>Your co-applicant's primary income is {{ incomePrimary }}/hr and {{ annualIncome }} annually.</p>
+        <p>Your co-applicant's secondary income is {{ incomeSecondary }}/hr and {{ annualIncomeSecondary }} annually.</p>
+        <p>Together, your co-applicant's earned income is {{ totalIncome }}</p>
 
     </div>
 </template>
@@ -66,12 +63,7 @@
 <script>
 
 export default {
-    name: 'income',
-    props:{
-        coapplicant: Boolean,
-        showCoapplicant: Boolean,
-    },
-
+    name: 'incomeCoApplicant',
     data: function(){
         return {
             incomePrimary: 0,
@@ -79,6 +71,7 @@ export default {
             incomeSecondary: 0,
             hoursSecondary: 20,
             anotherJob: false,
+
         }
     },
     computed:{
@@ -92,11 +85,6 @@ export default {
 
         totalIncome: function(){
             return this.annualIncome + this.annualIncomeSecondary
-        }
-    },
-    methods:{
-        showCoapplicantForm: function(yn){
-            this.$emit('showCoapplicantInputs', yn);
         }
     }
 

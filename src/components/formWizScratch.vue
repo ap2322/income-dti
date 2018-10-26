@@ -4,10 +4,18 @@
             title = 'Household Income and Debt Calculator'
             subtitle = 'Calculate your total household income and debt-to-income ratio'>
             <tab-content title='Household' icon="ti ti-user">
-                <householdInfo />
+                <householdInfo
+                    v-bind:coapplicant = 'coapplicant'
+                    @coapplicantSpecified="setCoapplicant"
+                />
             </tab-content>
             <tab-content title='Income' icon="ti ti-money">
-                <income/>
+                <income
+                    v-bind:coapplicant = 'coapplicant'
+                    v-bind:showCoapplicant ='showCoapplicant'
+                    @showCoapplicantInputs='showCoapplicantForm'
+                />
+                <incomeCoApplicant v-if='showCoapplicant'/>
             </tab-content>
             <tab-content title='Debt'>
                 Debt
@@ -23,9 +31,16 @@
 
 import householdInfo from './householdInfo.vue'
 import income from './income.vue'
+import incomeCoApplicant from './incomeCoApplicant.vue'
 
 export default {
     name: 'formWizScratch',
+    data: function() {
+        return {
+            coapplicant: false,
+            showCoapplicant: false,
+        };
+    },
     props: {
         title: {
             type: String,
@@ -98,6 +113,16 @@ export default {
     components: {
         householdInfo,
         income,
+        incomeCoApplicant,
+    },
+
+    methods: {
+        setCoapplicant: function(yesno){
+            this.coapplicant = yesno;
+        },
+        showCoapplicantForm: function(yesno){
+            this.showCoapplicant = yesno;
+        }
     }
 }
 </script>
