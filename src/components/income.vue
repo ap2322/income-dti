@@ -1,14 +1,14 @@
 <template>
     <div>
         <h2>Income</h2>
-        <p>What is your hourly income from your primary job? 
+        <p>What is your hourly income from your primary job?
         <!-- <label for="incomePrimary">Applicant Primary Income</label> -->
-        <input 
+        <input
             type="number" name="incomePrimary"
             placeholder="$0.00/hr"
             min="0.00" max="200.00" step="0.01"
-            v-model="incomePrimary" 
-            id = "incomePrimary" 
+            v-model="incomePrimary"
+            id = "incomePrimary"
             value="incomePrimary"
         />
         <!-- <span class="validity"></span> -->
@@ -16,12 +16,12 @@
 
         <p>On average, how many hours per week do you work?</p>
         <label for="hoursPerWeek">Hours per week </label>
-        <input 
+        <input
             type="number" name="hoursPerWeek"
             placeholder="40"
             min="0" max="168"
-            v-model="hoursPerWeek" 
-            id = "hoursPerWeek" 
+            v-model="hoursPerWeek"
+            id = "hoursPerWeek"
             value="hoursPerWeek"
         />
 
@@ -32,24 +32,24 @@
         </div>
 
         <div v-if=anotherJob>
-        <p> What is your hourly income from this job? 
-            <input 
+        <p> What is your hourly income from this job?
+            <input
                 type="number" name="incomeSecondary"
                 placeholder="$0.00/hr"
                 min="0.00" max="200.00" step="0.01"
-                v-model="incomeSecondary" 
-                id = "incomeSecondary" 
+                v-model="incomeSecondary"
+                id = "incomeSecondary"
                 value="incomeSecondary"
             />
         </p>
         <p>On average, how many hours per week do you work?</p>
             <label for="hoursSecondary">Hours per week </label>
-            <input 
+            <input
                 type="number" name="hoursSecondary"
                 placeholder="20"
                 min="0" max="168"
-                v-model="hoursSecondary" 
-                id = "hoursSecondary" 
+                v-model="hoursSecondary"
+                id = "hoursSecondary"
                 value="hoursSecondary"
             />
         </div>
@@ -66,42 +66,42 @@
 <script>
 
 export default {
-    name: 'income',
-    props:{
-        coapplicant: Boolean,
-        showCoapplicant: Boolean,
+  name: 'income',
+  props: {
+    coapplicant: Boolean,
+    showCoapplicant: Boolean,
+  },
+
+  data() {
+    return {
+      incomePrimary: 0,
+      hoursPerWeek: 40,
+      incomeSecondary: 0,
+      hoursSecondary: 20,
+      anotherJob: false,
+    };
+  },
+  computed: {
+    annualIncome() {
+      return this.incomePrimary * this.hoursPerWeek * 50;
     },
 
-    data: function(){
-        return {
-            incomePrimary: 0,
-            hoursPerWeek: 40,
-            incomeSecondary: 0,
-            hoursSecondary: 20,
-            anotherJob: false,
-        }
+    annualIncomeSecondary() {
+      return this.incomeSecondary * this.hoursPerWeek * 50;
     },
-    computed:{
-        annualIncome: function(){
-            return this.incomePrimary*this.hoursPerWeek*50;
-        },
 
-        annualIncomeSecondary: function(){
-            return this.incomeSecondary*this.hoursPerWeek*50;
-        },
-
-        totalIncome: function(){
-            return this.annualIncome + this.annualIncomeSecondary
-        }
+    totalIncome() {
+      return this.annualIncome + this.annualIncomeSecondary;
     },
-    methods:{
-        showCoapplicantForm: function(yn){
-            this.$emit('showCoapplicantInputs', yn);
-        }
-    }
+  },
+  methods: {
+    showCoapplicantForm(yn) {
+      this.$emit('showCoapplicantInputs', yn);
+    },
+  },
 
 
-}
+};
 </script>
 
 <style>

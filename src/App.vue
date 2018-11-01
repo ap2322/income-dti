@@ -9,9 +9,9 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-// import listtest from './components/listtest.vue' 
+// import listtest from './components/listtest.vue'
 // import formWiz from './components/formWiz.vue'
-import formWizScratch from './components/formWizScratch.vue'
+import formWizScratch from './components/formWizScratch.vue';
 
 export default {
   name: 'app',
@@ -22,8 +22,8 @@ export default {
     formWizScratch,
     // FormWizard,
     // TabContent
-  }
-}
+  },
+};
 </script>
 
 <style>

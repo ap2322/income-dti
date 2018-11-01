@@ -13,18 +13,18 @@
 
 <script>
 export default {
-    name: 'listtest',
-    props: {
-        title: {
-            type: String,
-            default: "title is nothing is specified",
-        },
-        likes: Number,
-        picked: Boolean,
-        commentIds: Array,
-        author: Object
-        }
-  }
+  name: 'listtest',
+  props: {
+    title: {
+      type: String,
+      default: 'title is nothing is specified',
+    },
+    likes: Number,
+    picked: Boolean,
+    commentIds: Array,
+    author: Object,
+  },
+};
 
 </script>
 

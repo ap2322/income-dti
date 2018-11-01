@@ -29,46 +29,45 @@
 
 
 <script>
-  export default {
-     data() {
-       return {
-         formInline: {
-           user: '',
-           region: ''
-         },
-         rules: {
-           user: [{
-             required: true,
-             message: 'Please input Activity name',
-             trigger: 'blur'
-           }, {
-             min: 3,
-             max: 5,
-             message: 'Length should be 3 to 5',
-             trigger: 'blur'
-           }],
-           region: [{
-             required: true,
-             message: 'Please select Activity zone',
-             trigger: 'change'
-           }],
-         }
-        }
-       },
-       methods: {
-         onComplete: function() {
-           alert('Yay. Done!');
-         },
-         validateFirstStep() {
-           return new Promise((resolve, reject) => {
-             this.$refs.ruleForm.validate((valid) => {
-               resolve(valid);
-             });
-           })
-
-         }
-       }
-  }
+export default {
+  data() {
+    return {
+      formInline: {
+        user: '',
+        region: '',
+      },
+      rules: {
+        user: [{
+          required: true,
+          message: 'Please input Activity name',
+          trigger: 'blur',
+        }, {
+          min: 3,
+          max: 5,
+          message: 'Length should be 3 to 5',
+          trigger: 'blur',
+        }],
+        region: [{
+          required: true,
+          message: 'Please select Activity zone',
+          trigger: 'change',
+        }],
+      },
+    };
+  },
+  methods: {
+    onComplete() {
+      alert('Yay. Done!');
+    },
+    validateFirstStep() {
+      return new Promise((resolve, reject) => {
+        this.$refs.ruleForm.validate((valid) => {
+          resolve(valid);
+        });
+      });
+    },
+  },
+};
 </script>
 
 <style>
