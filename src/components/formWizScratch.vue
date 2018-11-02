@@ -10,16 +10,7 @@
                 />
             </tab-content>
             <tab-content title='Income' icon="ti ti-money">
-                <income
-                    v-bind:coapplicant = 'coapplicant'
-                    v-bind:showCoapplicant ='showCoapplicant'
-                    v-bind:showIncomeAdditional = 'showIncomeAdditional'
-                    v-bind:incomeAdditional = 'incomeAdditional'
-                    @showCoapplicantInputs='showCoapplicantForm'
-                    @showIncomeAdditionalInputs = 'showIncomeAdditionalForm'
-                />
-                <incomeCoApplicant v-if='showCoapplicant'/>
-                <incomeAdditional v-if='showIncomeAdditional'/>
+                <incomeContainer/>
             </tab-content>
             <tab-content title='Debt' icon= "ti ti-receipt">
                 <debt/>
@@ -34,9 +25,7 @@
 <script>
 
 import householdInfo from './householdInfo.vue';
-import income from './income.vue';
-import incomeCoApplicant from './incomeCoApplicant.vue';
-import incomeAdditional from './incomeAdditional.vue';
+import incomeContainer from './incomeContainer.vue';
 import debt from './debt.vue';
 
 export default {
@@ -119,9 +108,7 @@ export default {
   },
   components: {
     householdInfo,
-    income,
-    incomeCoApplicant,
-    incomeAdditional,
+    incomeContainer,
     debt,
   },
 
@@ -129,13 +116,6 @@ export default {
     setCoapplicant(yesno) {
       this.coapplicant = yesno;
     },
-    showCoapplicantForm(yesno) {
-      this.showCoapplicant = yesno;
-    },
-    showIncomeAdditionalForm(yesno) {
-      console.log('we clicked this button');
-      this.showIncomeAdditional = yesno;
-    }
   },
 };
 </script>
