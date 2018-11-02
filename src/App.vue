@@ -1,27 +1,16 @@
 <template>
   <div id="app">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <!-- <listtest /> -->
-    <!-- <formWiz/> -->
     <formWizScratch/>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import listtest from './components/listtest.vue'
-// import formWiz from './components/formWiz.vue'
 import formWizScratch from './components/formWizScratch.vue';
 
 export default {
   name: 'app',
   components: {
-    // HelloWorld,
-    // listtest,
-    // formWiz,
     formWizScratch,
-    // FormWizard,
-    // TabContent
   },
 };
 </script>

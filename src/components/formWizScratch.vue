@@ -13,12 +13,16 @@
                 <income
                     v-bind:coapplicant = 'coapplicant'
                     v-bind:showCoapplicant ='showCoapplicant'
+                    v-bind:showIncomeAdditional = 'showIncomeAdditional'
+                    v-bind:incomeAdditional = 'incomeAdditional'
                     @showCoapplicantInputs='showCoapplicantForm'
+                    @showIncomeAdditionalInputs = 'showIncomeAdditionalForm'
                 />
                 <incomeCoApplicant v-if='showCoapplicant'/>
+                <incomeAdditional v-if='showIncomeAdditional'/>
             </tab-content>
-            <tab-content title='Debt'>
-                Debt
+            <tab-content title='Debt' icon= "ti ti-receipt">
+                <debt/>
             </tab-content>
             <tab-content title='Results'>
                 Results
@@ -32,6 +36,8 @@
 import householdInfo from './householdInfo.vue';
 import income from './income.vue';
 import incomeCoApplicant from './incomeCoApplicant.vue';
+import incomeAdditional from './incomeAdditional.vue';
+import debt from './debt.vue';
 
 export default {
   name: 'formWizScratch',
@@ -39,6 +45,7 @@ export default {
     return {
       coapplicant: false,
       showCoapplicant: false,
+      showIncomeAdditional: false,
     };
   },
   props: {
@@ -114,6 +121,8 @@ export default {
     householdInfo,
     income,
     incomeCoApplicant,
+    // incomeAdditional,
+    debt,
   },
 
   methods: {
@@ -123,6 +132,9 @@ export default {
     showCoapplicantForm(yesno) {
       this.showCoapplicant = yesno;
     },
+    showIncomeAdditional(yesno) {
+      this.showIncomeAdditional = yesno;
+    }
   },
 };
 </script>

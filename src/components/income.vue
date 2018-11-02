@@ -59,6 +59,7 @@
         <p>Together, your earned income is {{ totalIncome }}</p>
 
         <button v-show='coapplicant' v-on:click='showCoapplicantForm(true)'> Ready to add your spouse/partner/coapplicant's income?</button>
+        <button v-show='additionalIncome' v-on:click='showIncomeAdditionalForm(true)'>What other types of income do you collect?</button>
 
     </div>
 </template>
@@ -70,6 +71,7 @@ export default {
   props: {
     coapplicant: Boolean,
     showCoapplicant: Boolean,
+    showIncomeAdditional: Boolean,
   },
 
   data() {
@@ -98,6 +100,9 @@ export default {
     showCoapplicantForm(yn) {
       this.$emit('showCoapplicantInputs', yn);
     },
+    showIncomeAdditionalForm(yn) {
+      this.$emit('showIncomeAdditionalInputs', yn);
+    }
   },
 
 
