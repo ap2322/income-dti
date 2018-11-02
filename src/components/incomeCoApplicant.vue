@@ -56,6 +56,8 @@
         <p>Your co-applicant's primary income is {{ incomePrimary }}/hr and {{ annualIncome }} annually.</p>
         <p>Your co-applicant's secondary income is {{ incomeSecondary }}/hr and {{ annualIncomeSecondary }} annually.</p>
         <p>Together, your co-applicant's earned income is {{ totalIncome }}</p>
+        <button v-on:click='showIncomeAdditionalForm(true)'>What other types of income do you collect?</button>
+
 
     </div>
 </template>
@@ -64,6 +66,12 @@
 
 export default {
   name: 'incomeCoApplicant',
+  props: {
+    coapplicant: Boolean,
+    showCoapplicant: Boolean,
+    showIncomeAdditional: Boolean,
+  },
+
   data() {
     return {
       incomePrimary: 0,
@@ -87,9 +95,14 @@ export default {
       return this.annualIncome + this.annualIncomeSecondary;
     },
   },
-
-
+  
+  methods: {
+    showIncomeAdditionalForm(yn) {
+        this.$emit('showIncomeAdditionalForm', yn);
+    }
+  }
 };
+
 </script>
 
 <style>

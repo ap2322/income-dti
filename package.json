@@ -47,5 +47,6 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "homepage": "https://github.com/ap2322/income-dti"
+  "homepage": "https://github.com/ap2322/income-dti",
+  "wst": "/dist/"
 }

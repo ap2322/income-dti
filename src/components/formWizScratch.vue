@@ -121,7 +121,7 @@ export default {
     householdInfo,
     income,
     incomeCoApplicant,
-    // incomeAdditional,
+    incomeAdditional,
     debt,
   },
 
@@ -132,7 +132,8 @@ export default {
     showCoapplicantForm(yesno) {
       this.showCoapplicant = yesno;
     },
-    showIncomeAdditional(yesno) {
+    showIncomeAdditionalForm(yesno) {
+      console.log('we clicked this button');
       this.showIncomeAdditional = yesno;
     }
   },

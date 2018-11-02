@@ -59,7 +59,7 @@
         <p>Together, your earned income is {{ totalIncome }}</p>
 
         <button v-show='coapplicant' v-on:click='showCoapplicantForm(true)'> Ready to add your spouse/partner/coapplicant's income?</button>
-        <button v-show='additionalIncome' v-on:click='showIncomeAdditionalForm(true)'>What other types of income do you collect?</button>
+        <button v-if='!coapplicant' v-on:click='showIncomeAdditionalForm(true)'>What other types of income do you collect?</button>
 
     </div>
 </template>
