@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'household',
+  name: 'householdInfo',
   props: {
     coapplicant: Boolean,
   },

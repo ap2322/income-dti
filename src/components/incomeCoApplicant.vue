@@ -6,7 +6,7 @@
             type="number" name="incomePrimary"
             placeholder="$0.00/hr"
             min="0.00" max="200.00" step="0.01"
-            v-model="incomePrimary"
+            v-model.number="incomePrimary"
             id = "incomePrimary"
             value="incomePrimary"
         />
@@ -19,7 +19,7 @@
             type="number" name="hoursPerWeek"
             placeholder="40"
             min="0" max="168"
-            v-model="hoursPerWeek"
+            v-model.number="hoursPerWeek"
             id = "hoursPerWeek"
             value="hoursPerWeek"
         />
@@ -36,7 +36,7 @@
                 type="number" name="incomeSecondary"
                 placeholder="$0.00/hr"
                 min="0.00" max="200.00" step="0.01"
-                v-model="incomeSecondary"
+                v-model.number="incomeSecondary"
                 id = "incomeSecondary"
                 value="incomeSecondary"
             />
@@ -47,7 +47,7 @@
                 type="number" name="hoursSecondary"
                 placeholder="20"
                 min="0" max="168"
-                v-model="hoursSecondary"
+                v-model.number="hoursSecondary"
                 id = "hoursSecondary"
                 value="hoursSecondary"
             />
@@ -55,9 +55,7 @@
 
         <p>Your co-applicant's primary income is {{ incomePrimary }}/hr and {{ annualIncome }} annually.</p>
         <p>Your co-applicant's secondary income is {{ incomeSecondary }}/hr and {{ annualIncomeSecondary }} annually.</p>
-        <p>Together, your co-applicant's earned income is {{ totalIncome }}</p>
-        <button v-on:click='showIncomeAdditionalForm(true)'>What other types of income do you collect?</button>
-
+        <p>Together, your co-applicant's earned income is {{ incomeSubtotalCoApplicant }}</p>
 
     </div>
 </template>
@@ -66,11 +64,6 @@
 
 export default {
   name: 'incomeCoApplicant',
-  props: {
-    coapplicant: Boolean,
-    showCoapplicant: Boolean,
-    showIncomeAdditional: Boolean,
-  },
 
   data() {
     return {
@@ -79,7 +72,6 @@ export default {
       incomeSecondary: 0,
       hoursSecondary: 20,
       anotherJob: false,
-
     };
   },
   computed: {
@@ -88,20 +80,19 @@ export default {
     },
 
     annualIncomeSecondary() {
-      return this.incomeSecondary * this.hoursPerWeek * 50;
+      return this.incomeSecondary * this.hoursSecondary * 50;
     },
 
-    totalIncome() {
+    incomeSubtotalCoApplicant() {
       return this.annualIncome + this.annualIncomeSecondary;
-    },
-  },
-  
-  methods: {
-    showIncomeAdditionalForm(yn) {
-        this.$emit('showIncomeAdditionalForm', yn);
     }
+  },
+  methods: {
+    sendIncomeSubtotalCoApplicant(){
+        this.$emit('incomeSubtotalCoApplicant');
+    },
   }
-};
+}
 
 </script>
 

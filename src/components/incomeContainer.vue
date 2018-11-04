@@ -1,13 +1,18 @@
 <template>
-<!-- TODO1: make this income container receive data from income.vue, incomeCoApplicant.vue, 
-and incomeAdditional.vue... and parent formWizScratch.vue  -->
-<!-- TODO2: conditionally show incomeCoapplicant form and incomeAdditional form -->
 <!-- TODO3: Show information from this container up to parent formWizScratch.vue.-->
     <div>
-        <income/> <!-- primary income form, always show -->
-        <incomeCoApplicant v-if='showCoapplicant'        
-        />
-        <incomeAdditional v-if='showIncomeAdditional'/>
+        <p>Debugging: Coapplicant? {{ coapplicant }}</p>
+        <income
+            v-bind:incomeSubtotal = 'incomeSubtotal'
+        /> <!-- primary income form, always show -->
+        <button v-if= 'coapplicant' @click='showCoapplicantForm(true); showIncomeAddButton(true)'> Ready to add your spouse/partner/coapplicant's income?</button>
+        <incomeCoApplicant v-show='showCoapplicant' v-bind:incomeSubtotalCoApplicant = 'incomeSubtotalCoApplicant'/>
+        <button v-if='!coapplicant || adFormButton' @click='showIncomeAdditionalForm(true)'>What other types of income do you collect?</button>
+        <incomeAdditional v-if='showIncomeAdditional' v-bind:otherIncomeSubtotal = 'otherIncomeSubtotal'/>
+
+        <!-- calculate total household income -->
+        <p>Your annual wage income is {{ incomeSubtotal}} and your co-applicant's annual wage income is {{ incomeSubtotalCoApplicant}}</p>
+        <p>Combined all household income is {{ totalIncome }}</p>
     </div>
 </template>
 
@@ -21,34 +26,42 @@ export default {
     name: 'incomeContainer',
     props: {
         coapplicant: Boolean,
-        showCoapplicant: Boolean,
-        showIncomeAdditional: Boolean,
+        incomeSubtotal: Number,
+        incomeSubtotalCoApplicant: Number,
+        otherIncomeSubtotal: Number,
     },
     data() {
         return {
-            coapplicant: false,
             showCoapplicant: false,
             showIncomeAdditional: false,
+            adFormButton: false,
         }
     },
     components: {
-        householdInfo,
         income,
         incomeCoApplicant,
         incomeAdditional,
     },
+    computed:{
+        totalIncome() {
+            return this.otherIncomeSubtotal + this.incomeSubtotal + this.incomeSubtotalCoApplicant;
+        },
+    },
   
     methods: {
-        // showIncomeForm(yesno){
-        //     this.showIncome = yesno;
-        // }
         showCoapplicantForm(yesno) {
             this.showCoapplicant = yesno;
         },
+        showIncomeAddButton(yesno){
+            this.adFormButton = yesno;
+        },
         showIncomeAdditionalForm(yesno) {
-            console.log('we clicked this button');
             this.showIncomeAdditional = yesno;
+        },
+        incomeSubtotalCalc(incomeSubtotal){
+            this.incomeSubtotal = incomeSubtotal;
         }
+
     }
 }
 </script>

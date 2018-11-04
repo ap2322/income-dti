@@ -10,10 +10,12 @@
                 />
             </tab-content>
             <tab-content title='Income' icon="ti ti-money">
-                <incomeContainer/>
+                <incomeContainer
+                  v-bind:coapplicant = 'coapplicant'
+                />
             </tab-content>
             <tab-content title='Debt' icon= "ti ti-receipt">
-                <debt/>
+                <!-- <debt/> -->
             </tab-content>
             <tab-content title='Results'>
                 Results
@@ -33,8 +35,6 @@ export default {
   data() {
     return {
       coapplicant: false,
-      showCoapplicant: false,
-      showIncomeAdditional: false,
     };
   },
   props: {
