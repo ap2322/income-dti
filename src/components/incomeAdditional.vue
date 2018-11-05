@@ -9,6 +9,7 @@
             v-model.number="SNAPWic"
             id = "SNAPWic"
             value="SNAPWic"
+            @input='sendIncomeAdditionalSubtotal(otherIncomeSubtotal)'
         /> per month
         <!-- <span class="validity"></span> -->
         </p>
@@ -20,6 +21,7 @@
             v-model.number="TANF"
             id = "TANF"
             value="TANF"
+            @input='sendIncomeAdditionalSubtotal(otherIncomeSubtotal)'
         /> per month
         <!-- <span class="validity"></span> -->
         </p>
@@ -32,6 +34,7 @@
             v-model.number="SSI"
             id = "SSI"
             value="SSI"
+            @input='sendIncomeAdditionalSubtotal(otherIncomeSubtotal)'
         /> per month
         <!-- <span class="validity"></span> -->
         </p>
@@ -44,6 +47,7 @@
             v-model.number="SSDI"
             id = "SSDI"
             value="SSDI"
+            @input='sendIncomeAdditionalSubtotal(otherIncomeSubtotal)'
         /> per month
         <!-- <span class="validity"></span> -->
         </p>
@@ -56,6 +60,7 @@
               v-model.number="alimony"
               id = "alimony"
               value="alimony"
+              @input='sendIncomeAdditionalSubtotal(otherIncomeSubtotal)'
           /> per month
         <!-- <span class="validity"></span> -->
         </p>
@@ -67,6 +72,7 @@
               v-model.number="childSupport"
               id = "childSupport"
               value="childSupport"
+              @input='sendIncomeAdditionalSubtotal(otherIncomeSubtotal)'
           /> per month
         <!-- <span class="validity"></span> -->
         </p>
@@ -78,6 +84,7 @@
               v-model.number="pensionRetirement"
               id = "pensionRetirement"
               value="pensionRetirement"
+              @input='sendIncomeAdditionalSubtotal(otherIncomeSubtotal)'
           /> per month
         <!-- <span class="validity"></span> -->
         </p>        
@@ -114,8 +121,8 @@ export default {
 
   },
   methods:{
-    sendOtherIncomeSubtotal(){
-      this.$emit('otherIncomeSubtotal');
+    sendIncomeAdditionalSubtotal(otherIncomeSubtotal){
+      this.$emit('incomeAddSubCalc', otherIncomeSubtotal);
     },
   }
 };

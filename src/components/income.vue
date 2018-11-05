@@ -10,6 +10,7 @@
             v-model.number="incomePrimary"
             id = "incomePrimary"
             value="incomePrimary"
+            @input='sendIncomeSubtotal(incomeSubtotal)'
         />
         <!-- <span class="validity"></span> -->
         </p>
@@ -23,6 +24,7 @@
             v-model.number="hoursPerWeek"
             id = "hoursPerWeek"
             value="hoursPerWeek"
+            @input='sendIncomeSubtotal(incomeSubtotal)'
         />
 
         <p>Do you have another job?</p>
@@ -40,6 +42,7 @@
                 v-model.number="incomeSecondary"
                 id = "incomeSecondary"
                 value="incomeSecondary"
+                @input='sendIncomeSubtotal(incomeSubtotal)'
             />
         </p>
         <p>On average, how many hours per week do you work?</p>
@@ -51,6 +54,7 @@
                 v-model.number="hoursSecondary"
                 id = "hoursSecondary"
                 value="hoursSecondary"
+                @input='sendIncomeSubtotal(incomeSubtotal)'
             />
         </div>
 
@@ -65,7 +69,6 @@
 
 export default {
   name: 'income',
-
   data() {
     return {
       incomePrimary: 0,
@@ -89,8 +92,8 @@ export default {
     },
   },
   methods:{
-    sendIncomeSubtotal(){
-      this.$emit('incomeSubtotal');
+    sendIncomeSubtotal(incomeSubtotal){
+      this.$emit('incomeSubCalc', incomeSubtotal);
     },
   }
 };

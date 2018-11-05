@@ -15,7 +15,7 @@
                 />
             </tab-content>
             <tab-content title='Debt' icon= "ti ti-receipt">
-                <!-- <debt/> -->
+                <debtForm/>
             </tab-content>
             <tab-content title='Results'>
                 Results
@@ -28,7 +28,7 @@
 
 import householdInfo from './householdInfo.vue';
 import incomeContainer from './incomeContainer.vue';
-import debt from './debt.vue';
+import debtForm from './debt.vue';
 
 export default {
   name: 'formWizScratch',
@@ -109,7 +109,7 @@ export default {
   components: {
     householdInfo,
     incomeContainer,
-    debt,
+    debtForm,
   },
 
   methods: {

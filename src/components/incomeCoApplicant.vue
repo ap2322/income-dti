@@ -9,6 +9,7 @@
             v-model.number="incomePrimary"
             id = "incomePrimary"
             value="incomePrimary"
+            @input="sendCoIncomeSubtotal(incomeSubtotalCoApplicant)"
         />
         <!-- <span class="validity"></span> -->
         </p>
@@ -22,6 +23,7 @@
             v-model.number="hoursPerWeek"
             id = "hoursPerWeek"
             value="hoursPerWeek"
+            @input="sendCoIncomeSubtotal(incomeSubtotalCoApplicant)"
         />
 
         <p>Do they have another job?</p>
@@ -39,6 +41,7 @@
                 v-model.number="incomeSecondary"
                 id = "incomeSecondary"
                 value="incomeSecondary"
+                @input="sendCoIncomeSubtotal(incomeSubtotalCoApplicant)"
             />
         </p>
         <p>On average, how many hours per week do they work?</p>
@@ -50,6 +53,7 @@
                 v-model.number="hoursSecondary"
                 id = "hoursSecondary"
                 value="hoursSecondary"
+                @input="sendCoIncomeSubtotal(incomeSubtotalCoApplicant)"
             />
         </div>
 
@@ -87,9 +91,9 @@ export default {
       return this.annualIncome + this.annualIncomeSecondary;
     }
   },
-  methods: {
-    sendIncomeSubtotalCoApplicant(){
-        this.$emit('incomeSubtotalCoApplicant');
+  methods:{
+    sendCoIncomeSubtotal(incomeSubtotalCoApplicant){
+      this.$emit('incomeCoSubCalc', incomeSubtotalCoApplicant);
     },
   }
 }
