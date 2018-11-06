@@ -27,7 +27,11 @@
                 />
             </tab-content>
             <tab-content title='Results' icon="ti ti-bar-chart">
-                <results/>
+                <results
+                v-bind:hhSize = 'hhSize'
+                v-bind:totalIncome = 'totalIncome'
+                v-bind:debtSubtotal = 'debtSubtotal'
+                />
             </tab-content>
         </form-wizard>
     </div>
@@ -144,5 +148,4 @@ export default {
 </script>
 
 <style>
-
 </style>

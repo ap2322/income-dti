@@ -3,7 +3,7 @@
         <h2>Household</h2>
         <p>Will you be applying for an affordable home mortgage with a spouse/partner?</p>
 
-        <div id="example-3" select v-bind="coapplicant">
+        <div>
             <button v-on:click="setCoapplicant(true)">Yes</button>
             <button v-on:click="setCoapplicant(false)">No</button>
         </div>
