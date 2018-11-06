@@ -1,24 +1,33 @@
 <template>
     <div id = 'formWizScratch'>
+      <p>Value passing check: coapplicant {{coapplicant}}; 
+        household size {{ hhSize }}; totalIncome {{ totalIncome }}; total debts {{debtSubtotal}}</p>
         <form-wizard color="#ff671f"
             title = 'Household Income and Debt Calculator'
             subtitle = 'Calculate your total household income and debt-to-income ratio'>
             <tab-content title='Household' icon="ti ti-user">
                 <householdInfo
                     v-bind:coapplicant = 'coapplicant'
+                    v-bind:hhSize = 'hhSize'
                     @coapplicantSpecified="setCoapplicant"
+                    @hhSizeInput = "setHHSize"
                 />
             </tab-content>
             <tab-content title='Income' icon="ti ti-money">
                 <incomeContainer
                   v-bind:coapplicant = 'coapplicant'
+                  v-bind:totalIncome = 'totalIncome'
+                  @totalIncomeCalc = 'sendIncomeTotal'
                 />
             </tab-content>
             <tab-content title='Debt' icon= "ti ti-receipt">
-                <debtForm/>
+                <debtForm
+                  v-bind:debtSubtotal = 'debtSubtotal'
+                  @debtCalc = 'sendDebtSubtotal'
+                />
             </tab-content>
-            <tab-content title='Results'>
-                Results
+            <tab-content title='Results' icon="ti ti-bar-chart">
+                <results/>
             </tab-content>
         </form-wizard>
     </div>
@@ -29,12 +38,16 @@
 import householdInfo from './householdInfo.vue';
 import incomeContainer from './incomeContainer.vue';
 import debtForm from './debt.vue';
+import results from './resultsContainer.vue';
 
 export default {
   name: 'formWizScratch',
   data() {
     return {
       coapplicant: false,
+      hhSize: 1,
+      totalIncome: 0,
+      debtSubtotal: 0,
     };
   },
   props: {
@@ -110,11 +123,21 @@ export default {
     householdInfo,
     incomeContainer,
     debtForm,
+    results,
   },
 
   methods: {
     setCoapplicant(yesno) {
       this.coapplicant = yesno;
+    },
+    setHHSize(hhSize) {
+      this.hhSize = hhSize;
+    },
+    sendIncomeTotal(totalIncome) {
+      this.totalIncome = totalIncome;
+    },
+    sendDebtSubtotal(debtSubtotal) {
+      this.debtSubtotal = debtSubtotal;
     },
   },
 };

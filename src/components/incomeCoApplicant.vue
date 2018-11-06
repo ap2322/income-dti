@@ -57,9 +57,9 @@
             />
         </div>
 
-        <p>Your co-applicant's primary income is {{ incomePrimary }}/hr and {{ annualIncome }} annually.</p>
-        <p>Your co-applicant's secondary income is {{ incomeSecondary }}/hr and {{ annualIncomeSecondary }} annually.</p>
-        <p>Together, your co-applicant's earned income is {{ incomeSubtotalCoApplicant }}</p>
+        <!-- <p>Your co-applicant's primary income is {{ incomePrimary }}/hr and {{ monthlyIncome }} monthly.</p>
+        <p>Your co-applicant's secondary income is {{ incomeSecondary }}/hr and {{ monthlyIncomeSecondary }} monthly.</p>
+        <p>Together, your co-applicant's earned income is {{ incomeSubtotalCoApplicant }}</p> -->
 
     </div>
 </template>
@@ -79,16 +79,16 @@ export default {
     };
   },
   computed: {
-    annualIncome() {
-      return this.incomePrimary * this.hoursPerWeek * 50;
+    monthlyIncome() {
+      return this.incomePrimary * this.hoursPerWeek * 4;
     },
 
-    annualIncomeSecondary() {
-      return this.incomeSecondary * this.hoursSecondary * 50;
+    monthlyIncomeSecondary() {
+      return this.incomeSecondary * this.hoursSecondary * 4;
     },
 
     incomeSubtotalCoApplicant() {
-      return this.annualIncome + this.annualIncomeSecondary;
+      return this.monthlyIncome + this.monthlyIncomeSecondary;
     }
   },
   methods:{

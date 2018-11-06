@@ -58,9 +58,9 @@
             />
         </div>
 
-        <p>Your primary income is {{ incomePrimary }}/hr and {{ annualIncome }} annually.</p>
-        <p>Your secondary income is {{ incomeSecondary }}/hr and {{ annualIncomeSecondary }} annually.</p>
-        <p>Together, your earned income is {{ incomeSubtotal }}</p>
+        <!-- <p>Your primary income is {{ incomePrimary }}/hr and {{ monthlyIncome }} monthly.</p>
+        <p>Your secondary income is {{ incomeSecondary }}/hr and {{ monthlyIncomeSecondary }} monthly.</p>
+        <p>All together, your earned income is {{ incomeSubtotal }} every month.</p> -->
 
     </div>
 </template>
@@ -79,16 +79,16 @@ export default {
     };
   },
   computed: {
-    annualIncome() {
-      return this.incomePrimary * this.hoursPerWeek * 50;
+    monthlyIncome() {
+      return this.incomePrimary * this.hoursPerWeek * 4;
     },
 
-    annualIncomeSecondary() {
-      return this.incomeSecondary * this.hoursSecondary * 50;
+    monthlyIncomeSecondary() {
+      return this.incomeSecondary * this.hoursSecondary * 4;
     },
 
     incomeSubtotal() {
-      return this.annualIncome + this.annualIncomeSecondary;
+      return this.monthlyIncome + this.monthlyIncomeSecondary;
     },
   },
   methods:{

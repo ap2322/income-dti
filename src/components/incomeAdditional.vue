@@ -88,7 +88,7 @@
           /> per month
         <!-- <span class="validity"></span> -->
         </p>        
-        <p>Your additional income subtotal is {{ otherIncomeSubtotal }}</p>
+        <!-- <p>Your additional income subtotal is {{ otherIncomeSubtotal }}</p> -->
     </div>
 </template>
 
@@ -116,7 +116,7 @@ export default {
 
   computed: {
     otherIncomeSubtotal() {
-      return 12*(this.SNAPWic + this.TANF + this.SSI + this.SSDI + this.alimony + this.childSupport + this.pensionRetirement);
+      return (this.SNAPWic + this.TANF + this.SSI + this.SSDI + this.alimony + this.childSupport + this.pensionRetirement);
     },
 
   },

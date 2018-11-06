@@ -1,6 +1,5 @@
 <template>
     <div>
-        <p>Debugging: Coapplicant? {{ coapplicant }}</p>
         <income
             v-bind:incomeSubtotal = 'incomeSubtotal'
             @incomeSubCalc="makeIncomeSubCalc"
@@ -17,10 +16,12 @@
             v-bind:otherIncomeSubtotal = 'otherIncomeSubtotal'
             @incomeAddSubCalc="otherIncomeSubCalc"
         />
+        <p>Your approximate monthly income is ${{totalIncome}}. Does this look correct?</p>
+        <button v-on:click="sendIncomeTotal(totalIncome)">Yes</button>
 
         <!-- calculate total household income -->
-        <p>Your annual wage income is {{ incomeSubtotal }} and your co-applicant's annual wage income is {{ incomeSubtotalCoApplicant}}</p>
-        <p>Combined all household income is {{ totalIncome }}</p>
+        <!-- <p>Your annual wage income is {{ incomeSubtotal }} and your co-applicant's annual wage income is {{ incomeSubtotalCoApplicant}}</p>
+        <p>Combined all household income is {{ totalIncome }}</p> -->
     </div>
 </template>
 
@@ -74,6 +75,9 @@ export default {
         },
         otherIncomeSubCalc(otherIncomeSubtotal) {
             this.otherIncomeSubtotal = otherIncomeSubtotal;
+        },
+        sendIncomeTotal(totalIncome){
+            this.$emit('totalIncomeCalc', totalIncome);
         },
     }
 }

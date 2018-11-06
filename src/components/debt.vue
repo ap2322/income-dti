@@ -1,6 +1,4 @@
 <template>
-<!-- TODO 3: create debtIncomeRatio component, connect total household income and debt information to the component -->
-
     <div>
         <h2>Debt</h2>
         <p>Please enter your total <strong>minimum</strong> monthly payment obligations on the following kinds of debts:</p>
@@ -13,10 +11,11 @@
                 placeholder = '$0.00/month'
                 min='0'
                 value='minPayment'
+                @input='sendDebtSubtotal(debtSubtotal)'
             />
             </p>
         </div>
-        <p>{{ debtSubtotal }}</p>
+        <!-- <p>{{ debtSubtotal }}</p> -->
     </div>
 </template>
 
@@ -56,8 +55,12 @@ export default {
         console.log(sum);
         return sum;
       }
-  }
-
+  },
+  methods: {
+    sendDebtSubtotal(debtSubtotal){
+        this.$emit('debtCalc', debtSubtotal);
+    },
+    },
 }
 </script>
 

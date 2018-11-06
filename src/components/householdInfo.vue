@@ -1,13 +1,13 @@
 <template>
     <div>
         <h2>Household</h2>
-        <p>Will you be applying for a Habitat home with a spouse/partner?</p>
+        <p>Will you be applying for an affordable home mortgage with a spouse/partner?</p>
 
         <div id="example-3" select v-bind="coapplicant">
             <button v-on:click="setCoapplicant(true)">Yes</button>
             <button v-on:click="setCoapplicant(false)">No</button>
         </div>
-        <p> Applying with a coapplicant? {{ coapplicant }} </p>
+        <!-- <p> Applying with a coapplicant? {{ coapplicant }} </p> -->
         <br>
         <p>What is your household size?</p>
         <label for="hhSize">Household Size</label>
@@ -18,9 +18,9 @@
             v-model="hhSize"
             id = "hhSize"
             value="hhSize"
-            oninput="admessage()"/>
+            @input="setHHSize(hhSize)"/>
         <!-- <span class="validity"></span> -->
-        <p>Your household size is {{hhSize}}</p>
+        <!-- <p>Your household size is {{hhSize}}</p> -->
     </div>
 </template>
 
@@ -42,6 +42,9 @@ export default {
       if (yn) {
         this.hhSize = 2;
       }
+    },
+    setHHSize(hhSize) {
+      this.$emit('hhSizeInput', hhSize);
     },
   },
 };
