@@ -4,7 +4,8 @@
         household size {{ hhSize }}; totalIncome {{ totalIncome }}; total debts {{debtSubtotal}}</p>
         <form-wizard color="#ff671f"
             title = 'Household Income and Debt Calculator'
-            subtitle = 'Calculate your total household income and debt-to-income ratio'>
+            subtitle = 'Calculate your total household income and estimated debt-to-income ratio in 
+            preparation for applying for an affordable home.'>
             <tab-content title='Household' icon="ti ti-user">
                 <householdInfo
                     v-bind:coapplicant = 'coapplicant'

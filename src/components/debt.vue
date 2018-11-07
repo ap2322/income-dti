@@ -2,7 +2,7 @@
     <div>
         <h2>Debt</h2>
         <p>Please enter your total <strong>minimum</strong> monthly payment obligations on the following kinds of debts:</p>
-        <div v-for="debt in debts" :key="debt.name">
+        <div v-for="debt in debts" :key="debt.name" class='debtlist'>
             <p>{{ debt.name }} 
             <input type="number" 
                 id = 'debtInputs'
@@ -64,6 +64,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style style lang="scss" scoped>
+    .debtlist {
+        max-width: 380px;
+        margin: auto;
+        text-align: right;
+    }
 </style>

@@ -3,33 +3,32 @@
         <h2>Income</h2>
         <p>What is your hourly income from your primary job?
         <!-- <label for="incomePrimary">Applicant Primary Income</label> -->
-        <input
+        <input 
             type="number" name="incomePrimary"
             placeholder="$0.00/hr"
-            min="0.00" max="200.00" step="0.01"
+            min="0.00" max="200.00" step="0.01" 
             v-model.number="incomePrimary"
-            id = "incomePrimary"
             value="incomePrimary"
             @input='sendIncomeSubtotal(incomeSubtotal)'
         />
         <!-- <span class="validity"></span> -->
         </p>
 
-        <p>On average, how many hours per week do you work?</p>
-        <label for="hoursPerWeek">Hours per week </label>
-        <input
-            type="number" name="hoursPerWeek"
-            placeholder="40"
-            min="0" max="168"
-            v-model.number="hoursPerWeek"
-            id = "hoursPerWeek"
-            value="hoursPerWeek"
-            @input='sendIncomeSubtotal(incomeSubtotal)'
-        />
-
+        <p>On average, how many hours per week do you work?
+          <label for="hoursPerWeek">Hours per week </label>
+          <input
+              type="number" name="hoursPerWeek"
+              placeholder="40"
+              min="0" max="168"
+              v-model.number="hoursPerWeek"
+              id = "hoursPerWeek"
+              value="hoursPerWeek"
+              @input='sendIncomeSubtotal(incomeSubtotal)'
+          />
+        </p>
         <p>Do you have another job?</p>
         <div id="anotherJob" select v-bind="anotherJob">
-            <button v-on:click="anotherJob = true">Yes</button>
+            <button class = "button green" v-on:click="anotherJob = true">Yes</button>
             <button v-on:click="anotherJob = false">No</button>
         </div>
 

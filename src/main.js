@@ -10,7 +10,6 @@ import './assets/styles.scss';
 
 Vue.use(VueFormWizard);
 
-
 Vue.config.productionTip = false;
 
 new Vue({

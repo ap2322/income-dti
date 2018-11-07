@@ -128,6 +128,12 @@ export default {
 };
 </script>
 
-<style>
+<style <style lang="scss" scoped>
+p {
+  max-width: 90%;
+  text-align: right;
+}
+</style>
+>
 
 </style>

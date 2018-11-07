@@ -10,7 +10,7 @@
             v-bind:incomeSubtotalCoApplicant = 'incomeSubtotalCoApplicant'
             @incomeCoSubCalc="coIncomeSubCalc"
         />
-        <button v-if='!coapplicant || adFormButton' @click='showIncomeAdditionalForm(true)'>What other types of income do you collect?</button>
+        <button v-if='!coapplicant || adFormButton' @click='showIncomeAdditionalForm(true)'>Click to add additional sources of income</button>
         <incomeAdditional 
             v-if='showIncomeAdditional' 
             v-bind:otherIncomeSubtotal = 'otherIncomeSubtotal'
@@ -83,6 +83,17 @@ export default {
 }
 </script>
 
-<style>
+<style <style lang="scss" scoped>
+
+button {
+    background: #494b4c;
+color: white; }
+a.button.grey:hover, a.button.grey:focus, button.grey:hover, button.grey:focus {
+    background: #626566;
+    color: white; 
+}
+
+</style>
+
 
 </style>
