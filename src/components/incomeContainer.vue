@@ -1,5 +1,7 @@
 <template>
     <div>
+        <!-- TODO: Restructure income inputs as objects instea of individual variables -->
+        <!-- TODO: add event listner to all income input fields to send through total income calculation -->
         <income
             v-bind:incomeSubtotal = 'incomeSubtotal'
             @incomeSubCalc="makeIncomeSubCalc"

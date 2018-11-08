@@ -1,7 +1,7 @@
 <template>
     <div id = 'formWizScratch'>
-      <p>Value passing check: coapplicant {{coapplicant}}; 
-        household size {{ hhSize }}; totalIncome {{ totalIncome }}; total debts {{debtSubtotal}}</p>
+      <!-- <p>Value passing check: coapplicant {{coapplicant}}; 
+        household size {{ hhSize }}; totalIncome {{ totalIncome }}; total debts {{debtSubtotal}}</p> -->
         <form-wizard color="#ff671f"
             title = 'Household Income and Debt Calculator'
             subtitle = 'Calculate your total household income and estimated debt-to-income ratio in 

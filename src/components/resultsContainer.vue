@@ -1,45 +1,38 @@
 <template>
     <div>
         <h2>Income Level</h2>
-        <p>hhSize {{ hhSize }}, totalIncome {{ totalIncome }}, debts {{debtSubtotal}}
+            <p>With a household size of {{ hhSize }} and calculated monthly income of ${{ totalIncome }},
+                you earn approximately ${{ annualIncome }} annually.</p>
+            <p>For the metro Denver area, this means you earn apprixmately {{ individualAMI }}% of the
+                area median income. The median income for a household of {{ hhSize}} is
+                {{ medianIncomebyHouseholdSize[(hhSize-1)].ami100 }} </p>
 
         <h2>Debt-to-Income Ratio (DTI)</h2>
-        <p>With a monthly income of {{ totalIncome }} and monthly debt obligations of {{ debtSubtotal }}, your debt-to-income ratio 
-            estimate is <strong>{{ dtiEstimate }}</strong> 
-            your mortgage estimate is {{ mortgageEstimate }};
-            your debts including a mortage are {{ debtsInclMortgage}};
-            and your household size is {{ hhSize }}
-            without a mortgage, your dti estimate is {{ dtiNoMortgage }}
-            testing: {{ medianIncomebyHouseholdSize[(hhSize-1)].ami100 }}
-        </p>
-        <span>{{medianIncomebyHouseholdSize.housesize}}</span>
-        <!-- <div v-for="oneMedIncHH in medianIncomebyHouseholdSize" :key="oneMedIncHH.housesize">
-            <p>{{ oneMedIncHH.housesize }} </p>      
-        </div> -->
-        <div v-if='lowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
-            <lowIncomeContent/>
-        </div>
-        <div v-if='highIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
-            <highIncomeContent/>
-        </div>
-        
-        <div v-if='midlowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
-            <midlowIncomeContent/>Your affordable mortgage costs, calculated at 30% of your monthly income
-            would be about ${{ mortgageEstimate }}.
-        </div>
-        
-        <div v-if='dtiNoMortgage >= dtiThresholdNoMortgage'>
-            <dtiHighContent/>
-        </div>
-        <div v-else> Looks like you have a healthy DTI at {{ dtiNoMortgage }}% without a mortgage.
-        </div>
-        
-        
-
-        <!-- Output 1: Income too low <
-            Output 1.5: Income too high -->
-        <!-- Output 2: DTI too high -->
-        <!-- Output 3: Income 80-120% -->
+            <p>With monthly debt obligations of {{ debtSubtotal }}, your debt-to-income ratio 
+                estimate is <strong>{{ dtiEstimate }}% </strong></p>
+            <!-- <div v-for="oneMedIncHH in medianIncomebyHouseholdSize" :key="oneMedIncHH.housesize">
+                <p>{{ oneMedIncHH.housesize }} </p>      
+            </div> -->
+            <div v-if='lowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
+                <lowIncomeContent/><span>Though we don't have homes available at this income level,
+                an affordable mortgage payment calculated at 30% of your monthly income
+                would be about ${{ mortgageEstimate }}.</span>
+            </div>
+            <div v-if='highIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
+                <highIncomeContent/>
+            </div>
+            
+            <div v-if='midlowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
+                <midlowIncomeContent/><span>Your affordable mortgage costs, calculated at 30% of your monthly income
+                would be about ${{ mortgageEstimate }}.</span>
+            </div>
+            
+            <div v-if='dtiNoMortgage >= dtiThresholdNoMortgage'>
+                <dtiHighContent/> 
+                <!-- TODO: Pass debt information into dtiHighContent componenet -->
+            </div>
+            <div v-else> Looks like you have a healthy DTI at {{ dtiNoMortgage }}% without a mortgage.
+            </div>
 
     </div>
 </template>
@@ -98,6 +91,9 @@ export default {
         },
         annualIncome(){
             return this.totalIncome*12;
+        },
+        individualAMI(){
+            return (100*this.annualIncome/this.medianIncomebyHouseholdSize[this.hhSize-1].ami100)
         }
     },
     methods: {

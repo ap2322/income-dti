@@ -1,6 +1,9 @@
 <template>
     <div>
-        <p>here's what will appear if the income is between the lower and upper bounds</p>
+        <p>With the data provided, your income is estimated to qualify for an affordable home mortgage. 
+            <a href='https://www.habitatmetrodenver.org/program-qualifications/'>
+            Learn more about Habitat Denver's Homeownership program on their website. </a> 
+        </p>
     </div>
 </template>
 
