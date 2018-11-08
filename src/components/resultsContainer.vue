@@ -9,7 +9,15 @@
             estimate is <strong>{{ dtiEstimate }}</strong> 
             your mortgage estimate is {{ mortgageEstimate }};
             your debts including a mortage are {{ debtsInclMortgage}};
-            and your household size is {{ hhSize }}</p>
+            and your household size is {{ hhSize }}
+            without a mortgage, your dti estimate is {{ dtiNoMortgage }}
+        </p>
+        <span>{{medianIncomebyHouseholdSize.monthly}}</span>
+        <!-- Output 1: Income too low <
+            Output 1.5: Income too high -->
+        <!-- Output 2: DTI too high -->
+        <!-- Output 3: Income 80-120% -->
+
     </div>
 </template>
 
@@ -25,8 +33,6 @@ export default {
     },
     data: function(){
         return{
-            // totalIncome2: this.totalIncome,
-            // debtSubtotal2: this.debtSubtotal,
             medianIncomebyHouseholdSize:[
                 { housesize:1, ami100: 62938 },
                 { housesize:2, ami100: 71938 },
@@ -48,6 +54,9 @@ export default {
         mortgageEstimate() {
             return this.totalIncome*.3;
         },
+        dtiNoMortgage() {
+            return this.debtSubtotal/this.totalIncome;
+        },
         debtsInclMortgage(){
             return (this.debtSubtotal + this.mortgageEstimate);
         },
@@ -56,7 +65,7 @@ export default {
         },
     },
     methods: {
-
+        
     }
 }
 </script>

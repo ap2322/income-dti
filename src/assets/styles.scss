@@ -83,6 +83,9 @@ input[type=number] {
         max-width: 75%;
         margin: auto;
     }
+    .wizard-btn {
+        min-width: 8em;
+    }
 }
 
 input:out-of-range + .help-text::before {

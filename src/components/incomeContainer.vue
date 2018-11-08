@@ -16,7 +16,7 @@
             v-bind:otherIncomeSubtotal = 'otherIncomeSubtotal'
             @incomeAddSubCalc="otherIncomeSubCalc"
         />
-        <p>Your approximate monthly income is ${{totalIncome}}. Does this look correct?</p>
+        <h3>Your approximate monthly income is ${{totalIncome}}.</h3> <p>Does this look correct?</p>
         <button v-on:click="sendIncomeTotal(totalIncome)">Yes</button>
 
         <!-- calculate total household income -->
