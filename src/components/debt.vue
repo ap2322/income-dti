@@ -12,7 +12,7 @@
                 min=0
                 value='minPayment'
                 @input='sendDebtSubtotal(debtSubtotal)'
-            />
+            /> 
             </p>
         </div>
         <p><strong>Do you currently have deferred loans?</strong> 
@@ -102,7 +102,7 @@ export default {
 
 <style style lang="scss" scoped>
     .debtlist {
-        max-width: 380px;
+        max-width: 390px;
         margin: auto;
         text-align: right;
     }

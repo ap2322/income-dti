@@ -1,39 +1,42 @@
 <template>
     <div>
         <h2>Income Level</h2>
-            <p>With a household size of {{ hhSize }} and calculated monthly income of ${{ totalIncome }},
-                you earn approximately ${{ annualIncome }} annually.</p>
-            <p>For the metro Denver area, this means you earn apprixmately {{ individualAMI }}% of the
-                area median income. The median income for a household of {{ hhSize}} is
-                {{ medianIncomebyHouseholdSize[(hhSize-1)].ami100 }} </p>
+            <div class = 'resultsOutput'>
+                <p>With a <strong>household size of {{ hhSize }}</strong> and calculated <strong>monthly income of {{ totalIncome | currency }},
+                    </strong>you're earning <strong>approximately {{ annualIncome | currency }} annually.</strong></p>
+                <p>This means you're earning approximately <strong>{{ individualAMI | round }}% of the
+                    area median income.</strong>
+                    <br>
+                    The median income for a household of {{ hhSize}} is
+                    {{ medianIncomebyHouseholdSize[(hhSize-1)].ami100 | currency }} per year.</p>
 
-        <h2>Debt-to-Income Ratio (DTI)</h2>
-            <p>With monthly debt obligations of {{ debtSubtotal }}, your debt-to-income ratio 
-                estimate is <strong>{{ dtiEstimate }}% </strong></p>
-            <!-- <div v-for="oneMedIncHH in medianIncomebyHouseholdSize" :key="oneMedIncHH.housesize">
-                <p>{{ oneMedIncHH.housesize }} </p>      
-            </div> -->
-            <div v-if='lowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
-                <lowIncomeContent/><span>Though we don't have homes available at this income level,
-                an affordable mortgage payment calculated at 30% of your monthly income
-                would be about ${{ mortgageEstimate }}.</span>
+            <h2>Debt-to-Income Ratio (DTI)</h2>
+                <p>With monthly debt obligations of {{ debtSubtotal | currency }}, <strong>your estimated debt-to-income ratio 
+                    is {{ dtiEstimate | round }}% </strong></p>
+                <!-- <div v-for="oneMedIncHH in medianIncomebyHouseholdSize" :key="oneMedIncHH.housesize">
+                    <p>{{ oneMedIncHH.housesize }} </p>      
+                </div> -->
+                <div v-if='lowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
+                    <lowIncomeContent/><span>Though we don't have homes available at this income level,
+                    an affordable mortgage payment calculated at 30% of your monthly income
+                    would be about {{ mortgageEstimate | currency }}.</span>
+                </div>
+                <div v-if='highIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
+                    <highIncomeContent/>
+                </div>
+                
+                <div v-if='midlowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
+                    <midlowIncomeContent/><span>Your affordable mortgage costs, calculated at 30% of your monthly income
+                    is estimated at {{ mortgageEstimate | currency }}.</span>
+                </div>
+                
+                <div v-if='dtiNoMortgage >= dtiThresholdNoMortgage'>
+                    <dtiHighContent/> 
+                    <!-- TODO: Pass debt information into dtiHighContent componenet -->
+                </div>
+                <div v-else> Your current estimated debt-to-income ratio {{ dtiNoMortgage | round }}%.
+                </div>
             </div>
-            <div v-if='highIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
-                <highIncomeContent/>
-            </div>
-            
-            <div v-if='midlowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
-                <midlowIncomeContent/><span>Your affordable mortgage costs, calculated at 30% of your monthly income
-                would be about ${{ mortgageEstimate }}.</span>
-            </div>
-            
-            <div v-if='dtiNoMortgage >= dtiThresholdNoMortgage'>
-                <dtiHighContent/> 
-                <!-- TODO: Pass debt information into dtiHighContent componenet -->
-            </div>
-            <div v-else> Looks like you have a healthy DTI at {{ dtiNoMortgage }}% without a mortgage.
-            </div>
-
     </div>
 </template>
 
@@ -76,12 +79,22 @@ export default {
         midlowIncomeContent,
         dtiHighContent,
     },
+    filters: {
+        round: function(longNum) {
+            return longNum.toFixed(2);
+        },
+
+        currency: function(num) {
+            return '$' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        },
+    },
+
     computed:{
         mortgageEstimate() {
             return this.totalIncome*.3;
         },
         dtiNoMortgage() {
-            return 100*this.debtSubtotal/this.totalIncome; //as a percent
+            return 100*this.debtSubtotal/this.totalIncome; //as a percent 
         },
         debtsInclMortgage(){
             return 100*(this.debtSubtotal + this.mortgageEstimate); //as a percent
@@ -122,6 +135,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style style lang="scss" scoped>
+    .resultsOutput {
+        max-width: 600px;
+        margin: auto;
+        text-align: left;
+    }
 </style>

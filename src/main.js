@@ -7,6 +7,7 @@ import 'vue-form-wizard/dist/vue-form-wizard.min.css';
 // import '@icon/themify-icons/themify-icons.css'
 // import '@icon/themify-icons/themify-icons.svg'
 import './assets/styles.scss';
+import './filters/numberFilters.js';
 
 Vue.use(VueFormWizard);
 
