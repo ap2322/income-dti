@@ -9,7 +9,7 @@
                 name = 'debtInputs'
                 v-model.number="debt.minPayment"
                 placeholder = '$0.00/month'
-                min='0'
+                min=0
                 value='minPayment'
                 @input='sendDebtSubtotal(debtSubtotal)'
             />
@@ -31,7 +31,7 @@
                 name = 'debtInputs'
                 v-model.number="debt.deferredAmt"
                 placeholder = '$0.00/month'
-                min='0'
+                min=0
                 value='deferredAmt'
                 @input='sendDebtSubtotal(debtSubtotal)'
             />

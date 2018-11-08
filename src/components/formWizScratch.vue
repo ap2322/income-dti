@@ -71,7 +71,6 @@ export default {
     backButtonText: {
       type: String,
       default: 'Back',
-      color: '#888b8d',
     },
     finishButtonText: {
       type: String,
