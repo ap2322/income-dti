@@ -1,9 +1,10 @@
 <template>
     <div>
         <h2>Income</h2>
-        <p>What is your hourly income from your primary job?
+        <p>What is your <strong>hourly income</strong> from your primary job?
         <!-- <label for="incomePrimary">Applicant Primary Income</label> -->
         <input 
+            v-bind:style="[currencyInput]"
             type="number" name="incomePrimary"
             placeholder="$0.00/hr"
             min="0.00" max="200.00" step="0.01" 
@@ -14,7 +15,7 @@
         <!-- <span class="validity"></span> -->
         </p>
 
-        <p>On average, how many hours per week do you work?
+        <p>On average, how many <strong>hours per week</strong> do you work?
           <label for="hoursPerWeek">Hours per week </label>
           <input
               type="number" name="hoursPerWeek"
