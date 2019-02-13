@@ -2,14 +2,18 @@
     <div>
         <h2>Income Level</h2>
             <div class = 'resultsOutput'>
-                <p>With a <strong>household size of {{ hhSize }}</strong> and calculated <strong>monthly income of {{ totalIncome | currency }},
-                    </strong>you're earning <strong>approximately {{ annualIncome | currency }} annually.</strong></p>
-                <p>This means you're earning approximately <strong>{{ individualAMI | round }}% of the
-                    area median income.</strong>
-                    <br>
-                    The median income for a household of {{ hhSize}} is
+                <h3>Household Summary</h3>
+                    <ul>
+                        <li>Household Size: {{ hhSize }}</li>
+                        <li>Monthly household income estimate: {{ totalIncome | currency }}</li>
+                        <li>Annual household income estimate: {{ annualIncome | currency }} </li>
+                    </ul>
+                <h3>Area Median Income</h3>
+                    <p>Your income and household size is {{ individualAMI | round }}% of the
+                    area median income.</p>
+                    <p>The metro Denver area median income for a household of {{ hhSize}} is
                     {{ medianIncomebyHouseholdSize[(hhSize-1)].ami100 | currency }} per year.</p>
-
+                    
             <h2>Debt-to-Income Ratio (DTI)</h2>
                 <p>With monthly debt obligations of {{ debtSubtotal | currency }}, <strong>your estimated debt-to-income ratio 
                     is {{ dtiEstimate | round }}% </strong></p>
