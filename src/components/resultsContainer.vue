@@ -20,6 +20,7 @@
                     
                     <hr>
             <h3>Estimated Program Qualifications</h3>
+            <p><i>Both income and debt-to-income (DTI) ratio must be acceptable to qualify for an affordable mortgage.</i></p>
             <h4>Income</h4>
                 <div v-if='lowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
                     <lowIncomeContent/><span>No homes are available at this income level, but
