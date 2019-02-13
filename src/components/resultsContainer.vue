@@ -7,21 +7,22 @@
                         <li>Household Size: {{ hhSize }}</li>
                         <li>Monthly household income estimate: {{ totalIncome | currency }}</li>
                         <li>Annual household income estimate: {{ annualIncome | currency }} </li>
+
+                        <br>
+                        <li>Monthly debt obligations estimate: {{ debtSubtotal | currency }}</li>
+                        <li><strong>Debt-to-Income Ratio (DTI) </strong>estimate: {{ dtiEstimate | round }}%</li>
+
                     </ul>
                 <h3>Area Median Income</h3>
                     <p>Your income and household size is {{ individualAMI | round }}% of the
-                    area median income.</p>
-                    <p>The metro Denver area median income for a household of {{ hhSize}} is
+                    area median income. The metro Denver area median income for a household of {{ hhSize}} is
                     {{ medianIncomebyHouseholdSize[(hhSize-1)].ami100 | currency }} per year.</p>
                     
-            <h2>Debt-to-Income Ratio (DTI)</h2>
-                <p>With monthly debt obligations of {{ debtSubtotal | currency }}, <strong>your estimated debt-to-income ratio 
-                    is {{ dtiEstimate | round }}% </strong></p>
-                <!-- <div v-for="oneMedIncHH in medianIncomebyHouseholdSize" :key="oneMedIncHH.housesize">
-                    <p>{{ oneMedIncHH.housesize }} </p>      
-                </div> -->
+                    <hr>
+            <h3>Estimated Program Qualifications</h3>
+            <h4>Income</h4>
                 <div v-if='lowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
-                    <lowIncomeContent/><span>Though we don't have homes available at this income level,
+                    <lowIncomeContent/><span>No homes are available at this income level, but
                     an affordable mortgage payment calculated at 30% of your monthly income
                     would be about {{ mortgageEstimate | currency }}.</span>
                 </div>
@@ -31,14 +32,16 @@
                 
                 <div v-if='midlowIncome(annualIncome, hhSize, medianIncomebyHouseholdSize)'>
                     <midlowIncomeContent/><span>Your affordable mortgage costs, calculated at 30% of your monthly income
-                    is estimated at {{ mortgageEstimate | currency }}.</span>
+                    is estimated at {{ mortgageEstimate | currency }}.</span><br>
                 </div>
-                
+            
+            <h4>Debt-to-Income Ratio</h4>
                 <div v-if='dtiNoMortgage >= dtiThresholdNoMortgage'>
                     <dtiHighContent/> 
                     <!-- TODO: Pass debt information into dtiHighContent componenet -->
                 </div>
-                <div v-else> Your current estimated debt-to-income ratio {{ dtiNoMortgage | round }}%.
+                <div v-else> Your current estimated debt-to-income ratio is {{ dtiNoMortgage | round }}%. This level of debt obligation
+                    is in the acceptable range to qualify for an affordable home mortgage.
                 </div>
             </div>
     </div>
