@@ -71,6 +71,18 @@ export default {
   name: 'income',
   data() {
     return {
+        incomes: [
+            { 
+            individual: 1,
+            jobNumber: 1,
+            hourlyRate: 0,
+            hoursPerWeek: 0,
+            overtimeRate:0,
+            overtimeHours:0,
+            monthlyRate:0,            
+            },
+//how to make vue/js append additional incomes to an object???
+        ],
       incomePrimary: 0,
       hoursPerWeek: 40,
       incomeSecondary: 0,
