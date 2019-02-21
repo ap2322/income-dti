@@ -1,4 +1,7 @@
-# income-dti
+This calculator is made to calculate household income totals, debt-to-income ratio, and area median income level for use in affordable housing program qualifications.
+
+Created using Vue.js framework.
+
 
 ## Project setup
 ```
