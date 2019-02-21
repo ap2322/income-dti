@@ -28,13 +28,23 @@
         </div>
         <div v-if="haveDeferred">
             <p>Please enter the <strong>total deferred loan amount</strong></p>
-            <label for="debts[2]"> {{ debts[2].name}}</label>
+            <label for="debts[2]"> {{ debts[2].name}} total</label>
             <input type="number" 
                 id = 'debtInputs'
                 name = 'debtInputs'
                 v-model.number="debts[2].deferredAmt"
                 min=0
                 value='debts[2].deferredAmt'
+                @input='sendDebtSubtotal(debtSubtotal)'
+                />
+            <br>
+            <label for="debts[4]"> Other deferred loan(s) total</label>
+            <input type="number" 
+                id = 'debtInputs'
+                name = 'debtInputs'
+                v-model.number="debts[4].deferredAmt"
+                min=0
+                value='debts[4].deferredAmt'
                 @input='sendDebtSubtotal(debtSubtotal)'
                 />
         </div>
