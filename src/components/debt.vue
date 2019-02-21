@@ -1,10 +1,6 @@
 <template>
     <div>
         <h2>Debt</h2>
-        <p> test {{ debts[2]}} </p>
-        <p> test2 {{ debts[2].name}}</p>
-        <p> test3 {{ debts[2].deferredAmt }}</p>
-
         <p>Please enter your total <strong>minimum</strong> monthly payment obligations on the following kinds of debts:</p>
         <div v-for="debt in debts" :key="debt.name" class='debtlist'>
             <p>{{ debt.name }} 
