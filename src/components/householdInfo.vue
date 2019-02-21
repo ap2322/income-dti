@@ -38,12 +38,12 @@ export default {
     };
   },
   methods: {
-    setCoapplicant(yn) {
-      this.$emit('coapplicantSpecified', yn);
-      if (yn) {
-        this.hhSize = 2;
-      }
-    },
+    // setCoapplicant(yn) {
+    //   this.$emit('coapplicantSpecified', yn);
+    //   if (yn) {
+    //     this.hhSize = 2;
+    //   }
+    // },
     setHHSize(hhSize) {
       this.$emit('hhSizeInput', hhSize);
     },

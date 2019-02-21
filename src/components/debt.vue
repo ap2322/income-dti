@@ -1,6 +1,10 @@
 <template>
     <div>
         <h2>Debt</h2>
+        <p> test {{ debts[2]}} </p>
+        <p> test2 {{ debts[2].name}}</p>
+        <p> test3 {{ debts[2].deferredAmt }}</p>
+
         <p>Please enter your total <strong>minimum</strong> monthly payment obligations on the following kinds of debts:</p>
         <div v-for="debt in debts" :key="debt.name" class='debtlist'>
             <p>{{ debt.name }} 
@@ -23,20 +27,16 @@
             <button v-on:click="haveDeferred=false">No</button>
         </div>
         <div v-if="haveDeferred">
-            <p>Please enter the <strong>total loan amount</strong> for each type of deferred loan</p>
-            <div v-for="debt in debts" :key="debt.name" class='debtlist'>
-            <p>{{ debt.name }} 
+            <p>Please enter the <strong>total deferred loan amount</strong></p>
+            <label for="debts[2]"> {{ debts[2].name}}</label>
             <input type="number" 
                 id = 'debtInputs'
                 name = 'debtInputs'
-                v-model.number="debt.deferredAmt"
-                placeholder = '$0.00/month'
+                v-model.number="debts[2].deferredAmt"
                 min=0
-                value='deferredAmt'
+                value='debts[2].deferredAmt'
                 @input='sendDebtSubtotal(debtSubtotal)'
-            />
-            </p>
-            </div>
+                />
         </div>
     </div>
 </template>
