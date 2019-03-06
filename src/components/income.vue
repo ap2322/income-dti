@@ -1,9 +1,41 @@
 <template>
     <div>
         <h2>Income</h2>
-        <p>What is your <strong>hourly income</strong> from your primary job?
+        <!-- loop through the different income types -->
+        <div v-for="income in incomes" :key="income.jobNumber">
+          <!-- TODO: show only one body at a time -->
+            <p>{{ income.incomeName }} 
+            </p>
+
+            <p>What is your 
+              <select v-model="selected">
+                <option>hourly</option>
+                <option>monthly</option>
+              </select>
+              <span>{{ selected }}</span>
+              income rate?
+              <!-- If "hourly" -->
+              <div v-if="selected = 'hourly'"><span> dollars per hour</span>
+                <input
+                  v-bind:style="[currencyInput]"
+                  v-model.number="income.hourlyRate"
+                  type="number"
+                  min="0.00" max="200.00" step="0.01">
+              </div>
+              <!-- If "monthly" -->
+              <div v-else-if="selected='monthly'"><span> monthly rate</span>
+                <input
+                  v-bind:style="[currencyInput]"
+                  v-model.number="income.monthlyRate"
+                  type="number"
+                  min="0.00" max="200.00" step="0.01">
+              </div>
+              </p>
+          </div>
+
+        <!-- <p>What is your <strong>hourly income</strong> from your primary job?
         <!-- <label for="incomePrimary">Applicant Primary Income</label> -->
-        <input 
+        <!-- <input 
             v-bind:style="[currencyInput]"
             type="number" name="incomePrimary"
             placeholder="$0.00/hr"
@@ -11,9 +43,9 @@
             v-model.number="incomePrimary"
             value="incomePrimary"
             @input='sendIncomeSubtotal(incomeSubtotal)'
-        />
+        /> -->
         <!-- <span class="validity"></span> -->
-        </p>
+        <!-- </p>
 
         <p>On average, how many <strong>hours per week</strong> do you work?
           <label for="hoursPerWeek">Hours per week </label>
@@ -56,7 +88,7 @@
                 value="hoursSecondary"
                 @input='sendIncomeSubtotal(incomeSubtotal)'
             />
-        </div>
+        </div> -->
 
         <!-- <p>Your primary income is {{ incomePrimary }}/hr and {{ monthlyIncome }} monthly.</p>
         <p>Your secondary income is {{ incomeSecondary }}/hr and {{ monthlyIncomeSecondary }} monthly.</p>
@@ -73,20 +105,52 @@ export default {
     return {
         incomes: [
             { 
-            individual: 1,
-            jobNumber: 1,
-            hourlyRate: 0,
-            hoursPerWeek: 0,
-            overtimeRate:0,
-            overtimeHours:0,
-            monthlyRate:0,            
+              incomeName: "Applicant Primary",
+              jobNumber: 1,
+              hourlyRate: 0,
+              hoursPerWeek: 0,
+              overtimeRate: 0,
+              overtimeHours: 0,
+              monthlyRate: 0,
             },
-//how to make vue/js append additional incomes to an object???
+            {
+              incomeName: "Applicant Secondary",
+              jobNumber: 2,
+              hourlyRate: 0,
+              hoursPerWeek: 0,
+              overtimeRate: 0,
+              overtimeHours: 0,
+              monthlyRate: 0,              
+            },
+            {
+              incomeName: "Co-applicant Primary",
+              jobNumber: 3,
+              hourlyRate: 0,
+              hoursPerWeek: 0,
+              overtimeRate: 0,
+              overtimeHours: 0,
+              monthlyRate: 0,
+            },
+            {
+              incomeName: "Co-applicant Secondary",
+              jobNumber: 4,
+              hourlyRate: 0,
+              hoursPerWeek: 0,
+              overtimeRate: 0,
+              overtimeHours: 0,
+              monthlyRate: 0,
+            },
+            {
+              incomeName: "Dependent Primary",
+              jobNumber: 5,
+              hourlyRate: 0,
+              hoursPerWeek: 0,
+              overtimeRate: 0,
+              overtimeHours: 0,
+              monthlyRate: 0,
+            }
         ],
-      incomePrimary: 0,
-      hoursPerWeek: 40,
-      incomeSecondary: 0,
-      hoursSecondary: 20,
+
       anotherJob: false,
     };
   },
